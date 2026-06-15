@@ -1,0 +1,9 @@
+{
+  "position": {
+    "x": 100,
+    "y": 200
+  },
+  "pet": "default",
+  "scale": 1.0,
+  "volume": 1.0
+}

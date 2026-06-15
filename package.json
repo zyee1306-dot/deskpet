@@ -1,0 +1,63 @@
+{
+  "name": "desktop-pet",
+  "version": "1.0.0",
+  "description": "A cross-platform desktop pet application",
+  "main": "./out/main/index.js",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "package": "electron-vite build && electron-builder",
+    "pack": "electron-vite build && cross-env ELECTRON_MIRROR=https://npmmirror.com/mirrors/electron/ electron-packager . \"Desktop Pet\" --platform=win32 --arch=x64 --out=dist --overwrite --icon=resources/icon.ico --asar --extra-resource=assets",
+    "pack:mac": "electron-vite build && electron-packager . \"Desktop Pet\" --platform=darwin --arch=universal --out=dist --overwrite --icon=resources/icon.icns --asar --extra-resource=assets",
+    "preview": "electron-vite preview"
+  },
+  "dependencies": {
+    "@electron-toolkit/preload": "^3.0.1",
+    "@electron-toolkit/utils": "^3.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@electron-toolkit/tsconfig": "^1.0.1",
+    "@electron/packager": "^20.0.1",
+    "@types/react": "^18.2.48",
+    "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^4.2.1",
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1",
+    "electron-packager": "^17.1.2",
+    "electron-vite": "^2.0.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12"
+  },
+  "build": {
+    "appId": "com.desktoppet.app",
+    "productName": "Desktop Pet",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*",
+      "assets/**/*",
+      "resources/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "assets",
+        "to": "assets"
+      }
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "resources/icon.png",
+      "sign": false
+    },
+    "nsis": {
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": false
+    }
+  }
+}
